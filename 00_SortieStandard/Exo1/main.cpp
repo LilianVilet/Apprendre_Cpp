@@ -16,7 +16,7 @@ int main()
         ifstream leFichier(nomDuFichier.c_str()); // c_str() transforme string en char*
 
         if(!leFichier .is_open())
-            cerr << "Erreur lors de l'ouverture du fichier" << endl;
+            cerr << "Erreur d'ouverture du fichier" << endl;
 
         else{
 
