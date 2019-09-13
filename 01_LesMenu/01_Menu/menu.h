@@ -1,23 +1,39 @@
+/**
+  * @file       menu.h
+  * @brief      Creation d'un menu
+  * @version    1.1
+  * @author     Lilian VILET
+  * @date       13 sept 2019
+*/
 #ifndef MENU_H
 #define MENU_H
+
 #include <string>
-#include <algorithm>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
+
+using namespace std;
 
 class menu
 {
 private:
-    std::string nom;
-    std::string *option;
-    int nbOptions;
-    size_t longueurMax;
+    const string nom; //nom du fichier du menu
+    string * options; //tableau des options du menu
+    int nbOptions; //nb d'options du menu
+    int longueurMax; //taille max de la chaîne de caractère du tableau
+
 public:
-    menu(const std::string &_nom);
+    menu(const string &_nom);
     ~menu();
-    int afficher();
-    static void AttendreAppuiTouche();
+    int Afficher();
+    static void AttendreAppuiTouche(); // déclarée statiquement, ce qui permet d'appeller la fonction même si la classe n'est pas instanciée
 };
 
 #endif // MENU_H
+
+enum CHOIX_MENU
+{
+    OPTION_1 = 1,
+    OPTION_2 = 2,
+    OPTION_3 = 3,
+    OPTION_4 = 4,
+    QUITTER
+};

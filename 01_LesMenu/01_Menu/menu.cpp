@@ -1,66 +1,104 @@
 #include "menu.h"
-#include <algorithm>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <algorithm>
+
+/**
+  * @file       menu.cpp
+  * @brief      Implémentation de la classe Menu
+  * @version    1.1
+  * @author     Lilian VILET
+  * @date       13 sept 2019
+  */
 
 using namespace std;
 
-menu::menu(const string &_nom)
+/**
+ * @brief menu::menu
+ * @details Constructeur de la classe menu,
+ *      contient les items du menu
+ * @param _nom du fichier
+ * @param longueurMax d'une option
+ */
+menu::menu(const string &_nom):nom(_nom), longueurMax(0)
 {
-    int nbLignes;
-  nom = _nom;
-ifstream fichierMenu(nom.c_str());
-if (fichierMenu.fail()){
-    cerr << "erreur lors de l'ouverture du fichier" <<nom << endl;
-    nbOptions=0;
-}else {
-    nbLignes=static_cast<int>(count(istreambuf_iterator<char>(fichierMenu),istreambuf_iterator<char>(),'\n'));
-    // allocation dynamique du tableau
-    nbOptions=nbLignes;
-    fichierMenu.seekg(0,ios::beg);
-    //retour au debut du fichier
-    option = new string [nbOptions];
+    string nomDuFichier;
+
+    ifstream leFichier(nom.c_str());
+
+    if(!leFichier .is_open())
+    {
+        cerr << "Erreur d'ouverture du fichier : " << nom << endl;
+        nbOptions=0;
+    }else
+    {
+        nbOptions = static_cast<int>(count(istreambuf_iterator<char>(leFichier),istreambuf_iterator<char>(),'\n'));
+        leFichier.seekg(0,ios::beg);
+        options = new string [nbOptions];
+        for(int indice=0;indice<nbOptions;indice++)
+        {
+            getline(leFichier,options[indice]);
+            if(static_cast<int>(options[indice].length())>longueurMax)
+            {
+                longueurMax = static_cast<int>(options[indice].length());
+            }
+        }
     }
-for (unsigned int i=1; i < nbOptions; i++) {
-std::getline(fichierMenu,option[i]);
-if (option[i].length()>longueurMax){
-longueurMax = (option[i].length());
-}
-}
 }
 
+/**
+ * @brief menu::~menu
+ * @details Destructeur de la classe,
+ *      libère la mémoire du constructeur
+ */
 menu::~menu()
 {
-    delete option;
+    delete [] options ;
 }
 
-int menu::afficher()
+/**
+ * @brief menu::Afficher
+ * @details Fonction qui permet d'afficher le menu,
+ *      ainsi que d'éffectuer le choix du menu
+ * @return
+ */
+int menu::Afficher()
 {
+    cout << "+" << setfill('-') << setw(6) << "+"  << setfill(' ') << setfill('-') << setw(11) << "+" << endl;
+    for (int indice=0; indice<nbOptions-1; indice++)
+    {
+        cout << "|" << setw(5) << setfill(' ') << indice+1 << "| " << options[indice] << setfill(' ') << setw(2) << "|" << endl;
+    }
+    cout << "+" << setfill('-') << setw(6) << "+"  << setfill(' ') << setfill('-') << setw(11) << "+" << endl;
+    //
+    //
+    //
     int choix;
 
-    if(nbOptions == 0)
-        choix = -1;
-    else {
-//cout << "+" << setfill('-') << setw(5) << "+" <<setfill(' ')<< setfill('-') << setw(longueurMax+2) << "+" << endl;
-   cout << setfill('-');
-    cout << "+-" << setw(5) << "-+-" << setw(longueurMax+2)<<"-+"<<endl;
-    cout << setfill(' ');
-    for (unsigned int i=1; i <nbOptions; i++){
-     cout << "| " << i << " | " << option[i] << " |" << endl;
- }
-    cout << setfill('-');
-cout << "+" << setw(5) << "-+-" << setw(longueurMax+2)<<"+"<<endl;
-cout << setfill(' ');
-cin >> choix;
-    }
-return choix;
+    do{
+        cout << "Entrer un nombre entre 1 et 5 : " << endl;
+        cin >> choix;
+        /*if (choix != 0 || 1 || 2 || 3 || 4 || 5 ){
+            cout << '\n' << "Erreur" << '\n' << endl;
+        }*/
+    }while(choix > nbOptions);
+
+    return choix;
 }
 
+/**
+ * @brief menu::AttendreAppuiTouche
+ * @details Fonction qui attend que l'on appui sur la touche Entrée,
+ *      le buffer d'entrée est vidé
+ */
 void menu::AttendreAppuiTouche()
 {
     string uneChaine;
-    cout << endl << "appuyer sur la touche entrée pour continuer...";
+    cout << endl << "appuyer sur la touche Entrée pour continuer...";
     getline(cin,uneChaine);
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    // Vidage du tampon d'entrée
+    cin.ignore(std::numeric_limits<streamsize>::max(), '\n' );
     system("clear");
 }
