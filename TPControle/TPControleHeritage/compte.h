@@ -1,6 +1,8 @@
 #ifndef COMPTE_H
 #define COMPTE_H
+#include <iostream>
 
+using namespace std;
 
 class Compte
 {

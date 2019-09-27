@@ -6,10 +6,12 @@ CONFIG -= qt
 SOURCES += \
         compte.cpp \
         compteepargne.cpp \
+        comptepayant.cpp \
         main.cpp \
         menu.cpp
 
 HEADERS += \
     compte.h \
     compteepargne.h \
+    comptepayant.h \
     menu.h

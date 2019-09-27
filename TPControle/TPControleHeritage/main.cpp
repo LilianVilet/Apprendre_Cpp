@@ -1,7 +1,7 @@
-#include <iostream>
 #include "menu.h"
 #include "compte.h"
 #include "compteepargne.h"
+#include <iostream>
 
 using namespace std;
 
@@ -23,29 +23,29 @@ CompteEpargne leCompteEpargne(0, 1.5);
            switch(choix)
            {
           case OPTION_1:
-             cout << "Vous avez choisi l'option Compte de dépôt" << endl;
+             cout << "Vous avez choisi le Compte de dépôt" << endl;
              choix=0;
              do{
                  choix = leMenuCompteDepot.Afficher();
                  switch(choix){
                  case 1:
-                     cout << "Vous avez choisi l'option de consultation de Solde"<<endl;
+                     cout << "Vous avez choisi Consultation du Solde"<<endl;
                      compteDepot->ConsulterSolde();
                      Menu::AttendreAppuiTouche();
                      break;
                  case 2:
-                     cout << "vous avez choisi l'option Dépôt" << endl;
+                     cout << "vous avez choisi Dépôt" << endl;
                      compteDepot->Deposer(montant);
                      Menu::AttendreAppuiTouche();
                      break;
 
                  case 3:
-                     cout <<"vous avez choisi l'option Retrait"<<endl;
+                     cout <<"vous avez choisi Retrait"<<endl;
                      compteDepot->Retirer(montant);
                      Menu::AttendreAppuiTouche();
                      break;
                  case 4:
-                     cout << "vous avez choisi l'option Quitter"<<endl;
+                     cout << "vous avez quitté"<<endl;
                      Menu::AttendreAppuiTouche();
                      break;
                  }
@@ -54,34 +54,34 @@ CompteEpargne leCompteEpargne(0, 1.5);
 
 
            case OPTION_2:
-               cout << "Vous avez choisi l'option Compte d'Epargne" << endl;
+               cout << "Vous avez choisi le Compte d'Epargne" << endl;
                choix=0;
                do{
                    choix = leMenuCompteEpargne.Afficher();
                    switch(choix){
                    case 1:
-                       cout << "Vous avez choisi l'option de consultation de Solde"<<endl;
+                       cout << "Vous avez choisi Consultation du Solde"<<endl;
                        leCompteEpargne.ConsulterSolde();
                        Menu::AttendreAppuiTouche();
                        break;
                    case 2:
-                       cout << "vous avez choisi l'option Dépôt" << endl;
+                       cout << "vous avez choisi Dépôt" << endl;
                        leCompteEpargne.Deposer(montant);
                        Menu::AttendreAppuiTouche();
                        break;
 
                    case 3:
-                       cout <<"vous avez choisi l'option Retrait"<<endl;
+                       cout <<"vous avez choisi Retrait"<<endl;
                        leCompteEpargne.Retirer(montant);
                        Menu::AttendreAppuiTouche();
                        break;
                    case 4:
-                       cout << "vous avez choisi l'option Calcul d'interet"<<endl;
+                       cout << "vous avez choisi Calcul d'interet"<<endl;
                        leCompteEpargne.CalculerInterets();
                        Menu::AttendreAppuiTouche();
                        break;
                    case 5:
-                       cout << "vous avez choisi l'option Quitter"<<endl;
+                       cout << "vous avez quitté"<<endl;
                        Menu::AttendreAppuiTouche();
                        break;
                    }
@@ -91,7 +91,7 @@ CompteEpargne leCompteEpargne(0, 1.5);
 
 
            case QUITTER:
-               cout << "Vous avez choisi l'option Quitter" << endl;
+               cout << "vous avez quitté" << endl;
 
            break;
            }

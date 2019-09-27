@@ -1,6 +1,9 @@
 #ifndef COMPTEEPARGNE_H
 #define COMPTEEPARGNE_H
 #include "compte.h"
+#include <iostream>
+
+using namespace std;
 
 class CompteEpargne: public Compte
 {

@@ -1,13 +1,16 @@
 #include "compte.h"
+#include <iostream>
+
+using namespace std;
 
 Compte::Compte()
 {
-
+    cout << "constructeur de la classe Compte"<< endl;
 }
 
 Compte::~Compte()
 {
-
+    cout << "destructeur de la classe Compte"<< endl;
 }
 
 void Compte::ConsulterSolde()
