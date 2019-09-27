@@ -2,12 +2,13 @@
 #define CAISSEDEBOUTEILLES_H
 #include "contenant.h"
 
-class caisseDeBouteilles : public contenant
+class CaisseDeBouteilles : public contenant
 {
 public:
-    caisseDeBouteilles(const int _largeur, const int _hauteur, const int _profondeur,const int _nbBouteilles,const int _contenance);
-    ~caisseDeBouteilles();
-    int calculerVolume();
+    CaisseDeBouteilles(const int _largeur, const int _hauteur, const int _profondeur,
+                       const int _nbBouteilles, const int _contenance);
+    ~CaisseDeBouteilles();
+    int CalculerVolume2();
 private:
     int nbBouteilles;
     int contenance;
