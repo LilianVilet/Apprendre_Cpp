@@ -1,17 +1,27 @@
 #include <iostream>
+#include "trajectoire.h"
 #include "element.h"
 #include "segment.h"
-#include "trajectoire.h"
+#include "vecteur.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Trajectoire : \n" << endl;
+    Trajectoire laTrajectoire(0);
 
-        Segment leSegment(9, 0);
-        leSegment.Afficher();
 
-        Segment leSegment2(5, 0.927295);
-        leSegment2.Afficher();
+    Segment leSegment(0, 3, 9, 0);
+    Segment leSegment2(0, 1, 5, 0.927295);
+
+    laTrajectoire.Afficher();
+
+    leSegment.Afficher();
+
+
+    leSegment2.Afficher();
+
+
+
+    return 0;
 }

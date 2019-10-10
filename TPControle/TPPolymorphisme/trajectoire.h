@@ -8,13 +8,13 @@ using namespace std;
 class Trajectoire
 {
 private:
-    Element **lElement;
+    Element **parcours;
     int nbEtapesMax;
     int prochaineEtape;
 public:
-    Trajectoire(const int _nbEtapesMaxi);
+    Trajectoire(const int _nbEtapesMax);
     ~Trajectoire();
-    bool Ajouter(const Element *_pElement);
+    bool Ajouter(Element *pElement);
     void Afficher();
 };
 
